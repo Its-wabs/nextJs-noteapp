@@ -3,7 +3,7 @@
 import { api } from "@/convex/_generated/api";
 import { Doc } from "@/convex/_generated/dataModel";
 import "@blocknote/core/fonts/inter.css";
-import { useCreateBlockNote , FormattingToolbar , FormattingToolbarController, BlockTypeSelect, FileCaptionButton, BasicTextStyleButton, ColorStyleButton, NestBlockButton, UnnestBlockButton, CreateLinkButton  } from "@blocknote/react";
+import { useCreateBlockNote , FormattingToolbar , FormattingToolbarController, BlockTypeSelect,  BasicTextStyleButton, ColorStyleButton, NestBlockButton, UnnestBlockButton  } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/shadcn";
 import "@blocknote/shadcn/style.css";
 import { useMutation } from "convex/react";

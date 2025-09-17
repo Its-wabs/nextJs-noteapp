@@ -62,13 +62,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const settings = useSettings();
 
   const { user } = useUser();
-  if (!user) return null;
+  
 
   const documents = useQuery(api.documents.get);
   const create = useMutation(api.documents.create);
   const archive = useMutation(api.documents.archive);
 
   const [editingId, setEditingId] = React.useState<string | null>(null);
+
+  if (!user) return null;
 
   const handleArchive = (id: string) => {
     const promise = archive({ id });
@@ -262,8 +264,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                           Are you absolutely sure?
                                         </AlertDialogTitle>
                                         <AlertDialogDescription>
-                                          This will permanently delete "
-                                          {document.title}".
+                                          This will permanently delete &quot;{document.title}&quot;.
                                         </AlertDialogDescription>
                                       </AlertDialogHeader>
                                       <AlertDialogFooter>

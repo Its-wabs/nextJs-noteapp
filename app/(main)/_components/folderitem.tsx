@@ -166,7 +166,7 @@ function FolderItem({ document }: { document: Doc<"documents"> }) {
                                 <AlertDialogHeader>
                                   <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                                   <AlertDialogDescription>
-                                    This action cannot be undone. This will permanently delete your folder "{title}".
+                                    This action cannot be undone. This will permanently delete your folder &quot;{title}&quot;.
                                   </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
@@ -248,7 +248,7 @@ function FolderItem({ document }: { document: Doc<"documents"> }) {
                                         <AlertDialogHeader>
                                           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                                           <AlertDialogDescription>
-                                            This action cannot be undone. This will permanently delete your note "{child.title}".
+                                            This action cannot be undone. This will permanently delete your note &quot;{child.title}&quot;.
                                           </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>

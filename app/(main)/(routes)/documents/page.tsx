@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import Image from "next/image";
 import { PlusCircle } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
 import { PageSkeleton } from "@/components/page-skeleton";
 
 export default function Page() {
