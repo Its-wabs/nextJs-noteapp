@@ -54,6 +54,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
+import { Id } from "@/convex/_generated/dataModel";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
@@ -72,7 +73,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   if (!user) return null;
 
-  const handleArchive = (id: string) => {
+  const handleArchive = (id: Id<"documents">) => {
     const promise = archive({ id });
     toast.promise(promise, {
       loading: "Archiving...",
