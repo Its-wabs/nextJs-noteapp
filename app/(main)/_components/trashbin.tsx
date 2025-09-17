@@ -27,6 +27,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Id } from "@/convex/_generated/dataModel";
 
 function TrashBinPopover() {
   const documents = useQuery(api.documents.getArchived);
@@ -46,7 +47,7 @@ function TrashBinPopover() {
     });
   };
 
-  const handleRemove = (id: string) => {
+  const handleRemove = (id: Id<"documents">) => {
     const promise = remove({ id });
     toast.promise(promise, {
       loading: "Removing...",
@@ -55,7 +56,7 @@ function TrashBinPopover() {
     });
   };
 
-  const handleRestore = (id: string) => {
+  const handleRestore = (id: Id<"documents">) => {
     const promise = restore({ id });
     toast.promise(promise, {
       loading: "Restoring...",
