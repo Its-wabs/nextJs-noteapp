@@ -30,6 +30,7 @@ export const create = mutation({
     title: v.string(),
     parentDocument: v.optional(v.id("documents")), // pass this if you want it inside a folder
     type: v.union(v.literal("note"), v.literal("folder")),
+    lastEdited: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -52,6 +53,7 @@ if (parentDoc && parentDoc.type !== "folder") {
       type: args.type,
       isArchived: false,
       isPublished: false,
+      lastEdited: args.lastEdited || Date.now(),
     });
 
     return document;

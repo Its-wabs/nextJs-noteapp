@@ -33,7 +33,6 @@ export default function Page() {
     const promise = create({
       title: "Untitled Note",
       type: "note",
-      lastEdited: Date.now(),
     });
     toast.promise(promise, {
       loading: "Creating note...",
