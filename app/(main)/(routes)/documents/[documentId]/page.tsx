@@ -40,7 +40,7 @@ const DocumentIdPage = ({params}:DocumentIdPageProps) => {
 
   const onChange = (content : string) => {
     update({
-      id: params.documentId,
+      id: params.documentId as Id<"documents">,
       content 
     });
 
