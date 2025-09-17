@@ -378,9 +378,23 @@ export const update = mutation({
   },
 });
 
-export const getAllSortedByLastEdited = query(async (ctx) => {
-  return await ctx.db
-    .query("documents")
-    .order("desc")
-    .collect(); 
+export const getAllSortedByLastEdited = query({
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    // Only get documents for the current user
+    const documents = await ctx.db
+      .query("documents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .filter((q) => q.eq(q.field("isArchived"), false)) // Only non-archived docs
+      .order("desc")
+      .collect();
+
+    return documents;
+  },
 });
