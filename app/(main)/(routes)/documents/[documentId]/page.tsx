@@ -5,15 +5,15 @@ import { PageSkeleton } from "@/components/page-skeleton";
 import Editor from "@/components/ui/editor";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { IconEditCircleOff } from "@tabler/icons-react";
+
 import { useMutation, useQuery } from "convex/react";
 import { redirect } from "next/navigation";
-import { ElementRef, useRef, useState } from "react";
+import {  useState } from "react";
 
 
-interface DocumentIdPageProps {
+type DocumentIdPageProps = {
     params: {
-        documentId: Id<"documents">;
+        documentId: string;
     };
 };
 
@@ -24,7 +24,7 @@ const DocumentIdPage = ({params}:DocumentIdPageProps) => {
    const [isEditable, setIsEditable] = useState(true);
    const update = useMutation(api.documents.update);
     const document = useQuery(api.documents.getById, {
-        documentId : params.documentId
+        documentId: params.documentId as Id<"documents">,
     });
 
     if (document === undefined) {

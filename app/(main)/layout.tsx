@@ -4,10 +4,10 @@
 import { useConvexAuth } from "convex/react";
 import { Spinner } from "@/components/spinner";
 import { redirect } from "next/navigation";
-import Navigation from "./_components/navigation";
+
 import SearchCommand from "@/components/search-command";
 import { AppSidebar } from "./_components/app-sidebar";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { SiteHeader } from "./_components/site-header";
 
 

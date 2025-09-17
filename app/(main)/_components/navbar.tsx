@@ -6,11 +6,9 @@ import { useQuery } from "convex/react";
 import { useParams } from "next/navigation";
 import Title from "./title";
 
-interface NavbarProps {
-    isCollapsed : boolean;
-};
 
-const Navbar = ( {isCollapsed}:NavbarProps ) => {
+
+const Navbar = ( ) => {
 
     const params = useParams();
     const document = useQuery(api.documents.getById,{

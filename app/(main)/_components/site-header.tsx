@@ -2,13 +2,13 @@
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { useParams } from "next/navigation"
-import { useState } from "react";
+
 import Navbar from "./navbar";
 
 export function SiteHeader() {
 
   const params = useParams();
-  const [isCollapsed,setIsCollapsed] = useState(false);
+
 
 
   
@@ -23,7 +23,7 @@ export function SiteHeader() {
 
         {!!params.documentId ? (
           <Navbar
-          isCollapsed={isCollapsed} 
+          
           />
 
         ) : (
