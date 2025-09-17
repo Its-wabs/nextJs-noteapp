@@ -20,7 +20,7 @@ const spinnerVariants = cva(
   
 );
 
-interface SpinnerProps extends VariantProps<typeof spinnerVariants> {}
+type SpinnerProps = VariantProps<typeof spinnerVariants>
 export const Spinner = ({
     size,
 
