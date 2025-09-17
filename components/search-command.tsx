@@ -73,9 +73,9 @@ const SearchCommand = () => {
                     {documents?.map((document) => (
                         <CommandItem
                         key={document._id}
-                        value={`${document._id}`}
+                        value={`${document._id}-${document.title}`}
                         title={document.title}
-                        onSelect={onSelect}
+                        onSelect={() => onSelect(document._id)}
                         >
                             {document.type ==="folder" ? (
                                 <div className="flex items-center">
