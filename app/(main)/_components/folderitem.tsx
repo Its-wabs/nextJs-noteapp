@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronRight, MoreHorizontal } from "lucide-react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { Doc } from "@/convex/_generated/dataModel";
+import { Doc, Id } from "@/convex/_generated/dataModel";
 import { toast } from "sonner";
 
 import {
@@ -57,7 +57,7 @@ function FolderItem({ document }: { document: Doc<"documents"> }) {
   const noteCount = children?.filter((c) => c.type === "note").length || 0;
   const folderCount = children?.filter((c) => c.type === "folder").length || 0;
 
-  const handleArchive = (id: string) => {
+  const handleArchive = (id: Id<"documents">) => {
     const promise = archive({ id });
     toast.promise(promise, {
       loading: "Archiving...",
