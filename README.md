@@ -4,10 +4,6 @@ Live demo: https://fikra-flow.vercel.app/
 
 Short: A simplified notes/folders app built with Next.js, Convex (db), Clerk (auth), shadcn/ui.
 
-Screenshots:
-- /screenshots/1.png
-- /screenshots/2.png
-
 Tech
 - Next.js 15
 - Convex (backend)
