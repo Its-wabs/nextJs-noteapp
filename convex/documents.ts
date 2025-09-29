@@ -44,7 +44,21 @@ export const create = mutation({
 
 if (parentDoc && parentDoc.type !== "folder") {
   throw new Error("You can only create inside a folder.");
+
 }
+
+ // count siblings to assign new position
+    const siblings = await ctx.db
+      .query("documents")
+      .withIndex("by_user_parent", (q) =>
+        q.eq("userId", userId).eq("parentDocument", args.parentDocument)
+      )
+      .collect();
+
+        // Calculate next position
+    const nextPosition = siblings.length === 0 
+      ? 0 
+      : Math.max(...siblings.map(s => s.position || 0)) + 1;
 
     const document = await ctx.db.insert("documents", {
       title: args.title,
@@ -54,6 +68,7 @@ if (parentDoc && parentDoc.type !== "folder") {
       isArchived: false,
       isPublished: false,
       lastEdited: args.lastEdited || Date.now(),
+      position: nextPosition,
     });
 
     return document;
@@ -170,6 +185,25 @@ export const restore = mutation({
       throw new Error("Unauthorized");
     }
 
+     // --- helper: get next available position
+const getNextPosition = async (parent: Id<"documents"> | undefined) => {
+  const siblings = await ctx.db
+    .query("documents")
+    .withIndex("by_user_parent", (q) =>
+      q.eq("userId", userId).eq("parentDocument", parent)
+    )
+    .filter((q) => q.eq(q.field("isArchived"), false))
+    .collect();
+  
+  // If no siblings, start at position 0
+  if (siblings.length === 0) return 0;
+  
+  // Find the maximum position among existing documents
+  const maxPosition = Math.max(...siblings.map(sibling => sibling.position || 0));
+  
+  // Return the next position (max + 1)
+  return maxPosition + 1;
+};
     // --- NEW helper: safely restore a document ---
     const restoreDocument = async (docId: Id<"documents">) => {
       const doc = await ctx.db.get(docId);
@@ -185,10 +219,13 @@ export const restore = mutation({
         }
       }
 
+      const newPosition = await getNextPosition(parent);
+
       // Restore the document with correct parent
       return ctx.db.patch(docId, {
         isArchived: false,
         parentDocument: parent,
+        position: newPosition,
       });
     };
 
@@ -398,3 +435,5 @@ export const getAllSortedByLastEdited = query({
     return documents;
   },
 });
+
+
