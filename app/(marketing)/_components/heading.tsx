@@ -9,7 +9,7 @@ import Link from "next/link";
 const Heading = () => {
     const {isAuthenticated, isLoading} = useConvexAuth();
     const [text,setText] = useState('');
-    const msg = "Your ideal shit is here";
+    const msg = "Your refuge to organize and think";
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
