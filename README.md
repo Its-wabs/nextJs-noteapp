@@ -1,4 +1,4 @@
-# Typeflow : Obsidian-ish note app (
+# Typeflow : Obsidian-ish note app 
 
 
 Short: A simplified notes/folders app built with Next.js, Convex (db), Clerk (auth), shadcn/ui.
